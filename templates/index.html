@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CardioSense – Heart Disease Prediction with XAI</title>
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#1d2433;--mute:#667085;--acc:#c0392b;--ok:#1e8e5a;--line:#e3e7ef}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:#1d2433;color:#fff;padding:18px 28px}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:#b8c0d0;font-size:13px}
+main{max-width:1150px;margin:22px auto;padding:0 16px;display:grid;grid-template-columns:1.1fr 1fr;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
+h2{font-size:17px;margin:0 0 14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-size:12.5px;color:var(--mute);display:block;margin-bottom:4px}
+input,select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px}
+button{margin-top:16px;width:100%;padding:12px;border:0;border-radius:7px;background:var(--acc);color:#fff;font-size:15px;cursor:pointer}
+.res{padding:16px;border-radius:8px;color:#fff;margin-bottom:16px}.hi{background:var(--acc)}.lo{background:var(--ok)}
+.res b{font-size:30px;display:block}.bar{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px}
+.bar span:first-child{width:46%}.track{flex:1;height:12px;position:relative;background:#eef1f6;border-radius:6px}
+.track i{position:absolute;top:0;height:12px;border-radius:6px}.pos{background:var(--acc);left:50%}.neg{background:var(--ok);right:50%}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px;border-bottom:1px solid var(--line);text-align:left}
+img{max-width:100%;border-radius:6px}.full{grid-column:1/-1}.note{font-size:12px;color:var(--mute)}
+@media(max-width:850px){main{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>❤ CardioSense – Heart Disease Risk Prediction</h1>
+<p>Best model: {{s.best_model}} ({{s.setting}}) · Test accuracy {{'%.1f'|format(s.metrics.Accuracy*100)}}% · ROC-AUC {{'%.2f'|format(s.metrics['ROC-AUC'])}} · SDG 3: Good Health &amp; Well-being</p></header>
+<main>
+<section class="card"><h2>Patient details (13 inputs)</h2>
+<form method="post"><div class="grid">
+{% for name,label,typ,opt in fields %}<div><label>{{loop.index}}. {{label}}</label>
+{% if typ=='num' %}<input type="number" name="{{name}}" min="{{opt[0]}}" max="{{opt[1]}}" step="{{opt[2]}}" value="{{vals[name]}}" required>
+{% else %}<select name="{{name}}">{% for k,v in opt.items() %}<option value="{{k}}" {% if vals[name]|float==k %}selected{% endif %}>{{v}}</option>{% endfor %}</select>{% endif %}
+</div>{% endfor %}</div><button type="submit">Predict</button></form></section>
+
+<section class="card"><h2>Output</h2>
+{% if result %}
+<div class="res {{'hi' if result.high else 'lo'}}"><b>{{result.prob}}%</b>{{result.label}}</div>
+<h2>Explainable AI – why this prediction?</h2>
+<p class="note">Each bar shows how much a feature moved the risk compared with a typical patient (red = increases risk, green = decreases).</p>
+{% for e in result.xai %}<div class="bar"><span>{{e.feature}} = {{e.value|round(1)}}</span><div class="track">
+<i class="{{'pos' if e.impact>0 else 'neg'}}" style="width:{{[e.impact|abs,50]|min}}%"></i></div><span>{{'%+.1f'|format(e.impact)}}%</span></div>{% endfor %}
+<p class="note">Decision support only — not a medical diagnosis. Consult a doctor.</p>
+{% else %}<p class="note">Fill in the patient details and click Predict.</p>{% endif %}
+<h2 style="margin-top:18px">Global feature importance</h2><img src="/static/xai_global.png" alt="Global importance">
+</section>
+
+<section class="card full"><h2>Model comparison (test set, 20%)</h2>
+<img src="/static/compare_fs.png" alt="Comparison"></section>
+</main></body></html>

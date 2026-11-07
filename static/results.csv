@@ -1,0 +1,11 @@
+Setting,Model,Accuracy,Precision,Recall,F1,ROC-AUC,CV Acc
+Without FS (13),Decision Tree,0.7377,0.8,0.5714,0.6667,0.7348,0.7679
+Without FS (13),Naive Bayes,0.8197,0.7931,0.8214,0.807,0.9037,0.8422
+Without FS (13),Logistic Regression,0.8689,0.8846,0.8214,0.8519,0.9318,0.8548
+Without FS (13),SVM,0.8361,0.8462,0.7857,0.8148,0.9037,0.8134
+Without FS (13),Random Forest,0.8361,0.875,0.75,0.8077,0.9156,0.8174
+With FS (8),Decision Tree,0.7377,0.8333,0.5357,0.6522,0.743,0.7927
+With FS (8),Naive Bayes,0.7869,0.7586,0.7857,0.7719,0.895,0.8463
+With FS (8),Logistic Regression,0.8033,0.8077,0.75,0.7778,0.9134,0.8467
+With FS (8),SVM,0.8033,0.8333,0.7143,0.7692,0.8755,0.8469
+With FS (8),Random Forest,0.8197,0.9048,0.6786,0.7755,0.8853,0.83

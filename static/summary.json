@@ -1,0 +1,131 @@
+{
+  "best_model": "Logistic Regression",
+  "setting": "Without FS (13)",
+  "selected": [
+    "ca",
+    "thalach",
+    "cp",
+    "exang",
+    "oldpeak",
+    "thal",
+    "slope",
+    "chol"
+  ],
+  "metrics": {
+    "Setting": "Without FS (13)",
+    "Model": "Logistic Regression",
+    "Accuracy": 0.8689,
+    "Precision": 0.8846,
+    "Recall": 0.8214,
+    "F1": 0.8519,
+    "ROC-AUC": 0.9318,
+    "CV Acc": 0.8548
+  },
+  "fs_table": [
+    {
+      "Feature": "ca",
+      "Chi2": 63.92,
+      "MutualInfo": 0.168,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "thalach",
+      "Chi2": 140.63,
+      "MutualInfo": 0.1,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "cp",
+      "Chi2": 45.42,
+      "MutualInfo": 0.108,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "exang",
+      "Chi2": 33.12,
+      "MutualInfo": 0.1,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "oldpeak",
+      "Chi2": 55.8,
+      "MutualInfo": 0.1,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "thal",
+      "Chi2": 5.64,
+      "MutualInfo": 0.163,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "slope",
+      "Chi2": 8.34,
+      "MutualInfo": 0.094,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "chol",
+      "Chi2": 13.34,
+      "MutualInfo": 0.053,
+      "Selected": "Yes"
+    },
+    {
+      "Feature": "sex",
+      "Chi2": 6.42,
+      "MutualInfo": 0.057,
+      "Selected": "No"
+    },
+    {
+      "Feature": "trestbps",
+      "Chi2": 11.91,
+      "MutualInfo": 0.042,
+      "Selected": "No"
+    },
+    {
+      "Feature": "age",
+      "Chi2": 15.32,
+      "MutualInfo": 0.0,
+      "Selected": "No"
+    },
+    {
+      "Feature": "restecg",
+      "Chi2": 2.55,
+      "MutualInfo": 0.046,
+      "Selected": "No"
+    },
+    {
+      "Feature": "fbs",
+      "Chi2": 1.06,
+      "MutualInfo": 0.035,
+      "Selected": "No"
+    }
+  ],
+  "shape_raw": [
+    303,
+    14
+  ],
+  "shape_clean": [
+    302,
+    14
+  ],
+  "class_counts": {
+    "0": 164,
+    "1": 138
+  },
+  "global_importance": {
+    "fbs": 0.0,
+    "age": 0.0016,
+    "oldpeak": 0.0137,
+    "chol": 0.0158,
+    "restecg": 0.0164,
+    "slope": 0.0191,
+    "sex": 0.0197,
+    "exang": 0.0322,
+    "trestbps": 0.0355,
+    "thal": 0.0415,
+    "thalach": 0.0514,
+    "cp": 0.0836,
+    "ca": 0.1164
+  }
+}
